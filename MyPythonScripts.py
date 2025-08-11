@@ -35,7 +35,7 @@ model  = load_model('Model_Data_organic_001.keras')
 
 
 # Load_ Class Name
-class_names = ['Organik', 'Anorganik']
+class_names = [0, 1]
 class_name2 = ['Silahkan masukkan ke tempat sampah berwarna hijau','Silahkan masukkan ke tempat sampah berwarna kuning']
 #class_name3 = ['Siaga, Lingkungan perlu di awasi oleh warga', 'Waspada, Warga di sarankan segera menjadwalkan pembersihan lingkungan','Berbahaya, Segera lakukan pembersihan lingkungan']
 
