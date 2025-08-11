@@ -1,8 +1,9 @@
 numpy
 streamlit
-Keras<=2.14.0
+Keras<=2.13.0
 tensorflow
 st_annotated_text
+
 
 
 
