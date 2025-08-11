@@ -1,8 +1,8 @@
 import streamlit as st
 import pickle
 import tensorflow as tf
-#from tensorflow.keras.models import load_model
-from keras.models import load_model
+from tensorflow.keras.models import load_model
+#from keras.models import load_model
 #from tensorflow.python.keras.layers import Dense
 from function import classify
 from PIL import Image
