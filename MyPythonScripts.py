@@ -3,6 +3,8 @@ import tensorflow as tf
 from function import classify
 from PIL import Image
 import time
+import os
+from PIL import Image
 from annotated_text import annotated_text
 
 # Title
@@ -49,6 +51,7 @@ model_path = os.path.join(working_dir, 'Model_Data_organic_002.h5')
 
 # Load the pre-trained model
 model = tf.keras.models.load_model(model_path, custom_objects={'SparseCategoricalCrossentropy': CustomSparseCategoricalCrossentropy})
+
 
 
 
