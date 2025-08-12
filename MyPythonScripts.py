@@ -1,6 +1,6 @@
 import streamlit as st
 import pickle
-#import tensorflow as tf
+import tensorflow as tf
 #from tensorflow.keras.models import load_model
 from keras.models import Sequential
 from keras.models import load_model
@@ -33,6 +33,7 @@ with col3:
 
 # Load Model Classification
 model  = tf.keras.models.load_model('Model_Data_organic_002.keras')
+
 
 
 
