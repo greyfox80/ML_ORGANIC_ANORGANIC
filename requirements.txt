@@ -1,9 +1,10 @@
 numpy
 streamlit==1.48.0
 tensorflow==2.11.0
-keras==2.11.0
+keras>=2.11.0
 protobuf==3.20.*
 st_annotated_text
+
 
 
 
