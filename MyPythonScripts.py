@@ -35,7 +35,8 @@ with col3:
               )
 
 # Load Model Classification
-model  = keras.models.load_model('Model_Opsi_Data_Sampah_003.keras')
+model  = load_model('Model_Opsi_Data_Sampah_003.keras')
+
 
 
 
