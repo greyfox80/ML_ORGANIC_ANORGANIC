@@ -32,7 +32,7 @@ with col3:
               )
 
 # Load Model Classification
-model  = load_model('Model_Data_organic_002.keras')
+model  = tf.keras.models.load_model('Model_Data_organic_002.keras')
 
 
 # Load_ Class Name
@@ -63,6 +63,7 @@ if file is not None:
          st.write("## Keterangan : {} ".format(class_name2[index]))
          st.write("## Prob : {:.0%} ".format(prob, '.0%'))
          #st.write("## Action Recommendation : {} ".format(class_name3[index]))
+
 
 
 
