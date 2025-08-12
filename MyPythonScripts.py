@@ -3,7 +3,7 @@ import pickle
 #import tensorflow as tf
 #from tensorflow.keras.models import load_model
 from keras.models import Sequential
-#from keras.models import load_model
+from keras.models import load_model
 #from tensorflow.python.keras.layers import Dense
 from function import classify
 from PIL import Image
@@ -63,6 +63,7 @@ if file is not None:
          st.write("## Keterangan : {} ".format(class_name2[index]))
          st.write("## Prob : {:.0%} ".format(prob, '.0%'))
          #st.write("## Action Recommendation : {} ".format(class_name3[index]))
+
 
 
 
