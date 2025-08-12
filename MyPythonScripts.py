@@ -31,26 +31,19 @@ with col3:
     )
 
 # Load Model Classification
+custom_objects = {
+    "RandomHeight": tf.keras.layers.RandomHeight,
+    "RandomFlip": tf.keras.layers.RandomFlip,
+    "RandomRotation": tf.keras.layers.RandomRotation,
+}
+model = tf.keras.models.load_model(
+    "Model_Data_organic_002.keras",
+    custom_objects=custom_objects
+)
 #model = tf.keras.models.load_model('Model_Data_organic_002.keras')
 
-# Custom loss function to handle deserialization
-from tensorflow.keras.losses import SparseCategoricalCrossentropy
 
-class CustomSparseCategoricalCrossentropy(SparseCategoricalCrossentropy):
-    def __init__(self, reduction='auto', name='sparse_categorical_crossentropy', from_logits=False, ignore_class=None):
-        super().__init__(reduction=reduction, name=name, from_logits=from_logits, ignore_class=ignore_class)
 
-# Register the custom loss function
-tf.keras.utils.get_custom_objects().update({
-    'SparseCategoricalCrossentropy': CustomSparseCategoricalCrossentropy
-})
-
-# Set working directory and model path
-working_dir = os.path.dirname(os.path.abspath(__file__))
-model_path = os.path.join(working_dir, 'Model_Data_organic_002.h5')
-
-# Load the pre-trained model
-model = tf.keras.models.load_model(model_path, custom_objects={'SparseCategoricalCrossentropy': CustomSparseCategoricalCrossentropy})
 
 
 
