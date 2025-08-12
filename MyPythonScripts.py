@@ -5,6 +5,10 @@ import pickle
 from keras.models import Sequential
 from keras.models import load_model
 #from tensorflow.python.keras.layers import Dense
+from function import classify
+from PIL import Image
+import time
+from annotated_text import annotated_text
 
 # Title
 st.title("Selamat Datang di Aplikasi Sorta - Sorting Trash Assistant")
@@ -26,6 +30,7 @@ with col3:
     annotated_text(
                 ("by","Shafira dan Murin","#8ef"),("","SMAN 12 JKT","#faa")
               )
+
 
 
 
