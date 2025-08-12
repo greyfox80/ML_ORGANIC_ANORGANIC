@@ -35,7 +35,8 @@ with col3:
               )
 
 # Load Model Classification
-model  = load_model('Model_Opsi_Data_Sampah_003.keras')
+model  = load_model('Model_Data_organic_001.h5')
+
 
 
 
