@@ -29,5 +29,6 @@ with col3:
     )
 
 # Load Model Classification
-model = tf.keras.models.load_model('Model_Data_organic_002.h5')
+model = tf.keras.models.load_model('Model_Data_organic_002.keras')
+
 
