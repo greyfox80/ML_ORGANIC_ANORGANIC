@@ -31,6 +31,9 @@ with col3:
                 ("by","Shafira dan Murin","#8ef"),("","SMAN 12 JKT","#faa")
               )
 
+# Load Model Classification
+model  = load_model('Model_Data_organic_001.h5')
+
 
 
 
