@@ -35,7 +35,8 @@ with col3:
               )
 
 # Load Model Classification
-model  = keras.models.load_model('Model_Data_organic_001.h5')
+model  = keras.models.load_model('Model_Data_organic_001.keras')
+
 
 
 
