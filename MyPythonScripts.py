@@ -35,6 +35,35 @@ with col3:
 model  = tf.keras.models.load_model('Model_Data_organic_002.keras')
 
 
+# Load_ Class Name
+class_names = ["Anorganik", "Organik"]
+class_name2 = ['Silahkan masukkan ke tempat sampah berwarna kuning','Silahkan masukkan ke tempat sampah berwarna hijau']
+#class_name3 = ['Siaga, Lingkungan perlu di awasi oleh warga', 'Waspada, Warga di sarankan segera menjadwalkan pembersihan lingkungan','Berbahaya, Segera lakukan pembersihan lingkungan']
+
+
+# Display Image
+if file is not None:
+
+    image = Image.open(file)
+    st.image(image, use_column_width=True)
+    progress_bar = st.progress(0)
+    for perc_completed in range(100):
+        if (perc_completed == 10):
+            st.markdown(" ###### Analyzing & Processing")
+        time.sleep(0.06)        
+        progress_bar.progress(perc_completed+1)
+
+    # Classify image
+    class_name, index, prob = classify(image, model, class_names)
+
+    st.markdown(" ###### Process Completed !")
+
+    with st.expander('Click for prediction Result :'):
+         metrics = st.metric(label="Prediction", value=format(class_name2[index]), delta=format(prob))
+         st.write("## Keterangan : {} ".format(class_name2[index]))
+         st.write("## Prob : {:.0%} ".format(prob, '.0%'))
+         #st.write("## Action Recommendation : {} ".format(class_name3[index]))
+
 
 
 
