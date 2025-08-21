@@ -1,49 +1,74 @@
 import streamlit as st
+import pickle
 import tensorflow as tf
+from tensorflow.keras.models import load_model
+from tensorflow.keras.layers import RandomHeight
+from tensorflow.keras.layers import RandomWidth
+#from keras.models import load_model
+#from tensorflow.python.keras.layers import Dense
 from function import classify
 from PIL import Image
 import time
-import os
-from PIL import Image
-from annotated_text import annotated_text
+from function import annotated_text, pred_prob
+import numpy as np
 
 # Title
 st.title("Selamat Datang di Aplikasi Sorta - Sorting Trash Assistant")
 
 # Header
-st.header("Klasifikasi Sampah di Lingkungan Anda")
+st.header("Klasifikasi Sampah di Linkungan Anda")
 
 # Upload the File
-file = st.file_uploader(
-    "Unggah foto sampah Anda pada kolom unggah di bawah, dan kami akan memprediksi apakah sampah tersebut termasuk organik atau anorganik.",
-    type=['jpeg','jpg','png']
-)
+file = st.file_uploader("Unggah foto sampah Anda pada kolom unggah di bawah, dan kami akan memprediksi apakah sampah tersebut termasuk organik atau anorganik.", type=['jpeg','jpg','png'])
 
 col1, col2, col3 = st.columns(3)    
 with col1:
-    pass
+    """
+    """
 with col2:
-    pass
+    """
+    """    
 with col3:
     annotated_text(
-        ("by", "Shafira dan Murin", "#8ef"), 
-        ("", "SMAN 12 JKT", "#faa")
-    )
+                ("by","Shafira dan Murin","#8ef"),("","SMAN 12 JKT","#faa")
+              )
 
 # Load Model Classification
-custom_objects = {
-    "RandomHeight": tf.keras.layers.RandomHeight,
-    "RandomFlip": tf.keras.layers.RandomFlip,
-    "RandomRotation": tf.keras.layers.RandomRotation,
-}
-model = tf.keras.models.load_model(
-    "Model_Data_organic_002.keras",
-    custom_objects=custom_objects
-)
-#model = tf.keras.models.load_model('Model_Data_organic_002.h5')
+model  = load_model('Model_Data_organic_bin_002.h5', 
+                    custom_objects={
+                        'RandomHeight': RandomHeight,
+                        'RandomWidth': RandomWidth
+                        })
 
 
+# Load_ Class Name
+class_names = [1, 2]
+class_name2 = ['Anorganik','Organik']
+class_name3 = ['Silahkan masukkan ke tempat sampah berwarna kuning','Silahkan masukkan ke tempat sampah berwarna hijau']
 
+
+# Display Image
+if file is not None:
+
+    image = Image.open(file)
+    st.image(image, use_container_width=True)
+    progress_bar = st.progress(0)
+    for perc_completed in range(100):
+        if (perc_completed == 10):
+            st.markdown(" ###### Analyzing & Processing")
+        time.sleep(0.02)        
+        progress_bar.progress(perc_completed+1)
+
+    # Classify image
+    class_name, index, prob = pred_prob(image, model, class_names)
+
+    st.markdown(" ###### Process Completed !")
+
+    with st.expander('Click for prediction Result :'):
+         metrics = st.metric(label="Prediction", value=format(class_name2[index]), delta=format(prob))
+         st.write("## Keterangan : {} ".format(class_name3[index]))
+         #st.write("## Prediction Prob : {:.0%} ".format(prob, '.0%'))
+         #st.write("## Action Recommendation : {} ".format(class_name3[index]))
 
 
 

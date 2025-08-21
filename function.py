@@ -35,17 +35,6 @@ def classify(image, model, class_names):
     # Convert image to (224,224)
     img  = load_and_prep_image(image, scale=False)
     image_expanded = tf.expand_dims(img, axis=0)
-    #image = ImageOps.fit(image, 224,224), Image.Resampling.LANCZOS
-    
-    # Convert image to numpy array
-    #image_array = np.asarray(image)
-    
-    # Normalize image
-    #normalize_image_array = (image_array.astype(np.float32) / 127.5) - 1
-    
-    # Set Model Input
-    #data = np.ndarray(shape=(1, 224, 224, 3), dtype=np.float32)
-    #data[0] = normalized_image_array
     
     # Make Prediction
     pred_prob = model.predict(image_expanded)
@@ -55,6 +44,31 @@ def classify(image, model, class_names):
     predictions_prob = pred_prob.max()
 
     return class_name, confidence_score, predictions_prob
+
+def pred_prob(image, model, class_names):
+    # Convert image to (224,224)
+    img  = load_and_prep_image(image, scale=False)
+    image_expanded = tf.expand_dims(img, axis=0)
+    
+    # Make Prediction
+    pred_prob = model.predict(image_expanded)
+    index = int(tf.round(pred_prob))
+    class_name = class_names[index]
+    confidence_score = index
+    predictions_prob = pred_prob.max()
+
+    return class_name, confidence_score, predictions_prob
+
+def annotated_text(*args):
+    """Display text with annotations in Streamlit."""
+    out = ""
+    for arg in args:
+        if isinstance(arg, str):
+            out += arg
+        elif isinstance(arg, tuple):
+            text, label, color = arg
+            out += f'<span style="background-color:{color};border-radius:0.2em;padding:0.2em 0.4em;margin:0 0.1em;">{text} <span style="opacity:0.7;font-size:0.8em;">{label}</span></span>'
+    st.markdown(out, unsafe_allow_html=True)
 
 
 
